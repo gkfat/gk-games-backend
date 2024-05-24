@@ -1,0 +1,19 @@
+//
+// description something about this migration
+//
+
+const TABLE_NAME = 'YOUR_TABLE_NAME';
+
+/**
+ * @param {import('knex').Knex} knex
+ */
+export async function up(knex) {
+    await knex.schema.createTable(TABLE_NAME, (table) => { });
+}
+
+/**
+ * @param {import('knex').Knex} knex
+ */
+export async function down(knex) {
+    await knex.schema.dropTableIfExists(TABLE_NAME);
+}

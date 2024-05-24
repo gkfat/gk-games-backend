@@ -1,0 +1,16 @@
+//
+//  description something about this seed
+//
+
+const TABLE_NAME = 'TABLE_NAME';
+
+/**
+ * @param {import('knex').Knex} knex
+ */
+exports.seed = async (knex) => {
+    // Deletes ALL existing entries
+    await knex(TABLE_NAME).del();
+
+    // Insert integrators id
+    await knex(TABLE_NAME).insert({ col1: 'value1' });
+};

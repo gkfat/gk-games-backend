@@ -1,0 +1,40 @@
+{
+  "name": "gk-games-backend",
+  "version": "1.0.0",
+  "description": "",
+  "author": "gk",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch ./src/index.ts",
+    "start": "node -r dotenv/config dist/index.js",
+    "build": "tsc -p tsconfig.json",
+    "docker:up": "docker compose -f ./docker/docker-compose.yml -p gk-games up -d",
+    "migrate": "knex migrate:latest --knexfile=knexfile.mjs"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/helmet": "^11.1.1",
+    "config": "^3.3.11",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.27.0",
+    "fluent-json-schema": "^4.2.1",
+    "ioredis": "^5.4.1",
+    "knex": "^3.1.0",
+    "mysql2": "^3.9.7",
+    "objection": "^3.1.4",
+    "pino": "^9.1.0",
+    "pino-pretty": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/config": "^3.3.4",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^9.3.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  }
+}
