@@ -8,8 +8,9 @@ const redis = new IORedis({
         const MAX_RETRIES = 30;
 
         if (times >= MAX_RETRIES) {
-            logger.app.fatal(`redis reconnection error, max retries(${MAX_RETRIES}) reached.`)
-
+            logger.app.fatal(
+                `redis reconnection error, max retries(${MAX_RETRIES}) reached.`,
+            );
         }
 
         return 2000;

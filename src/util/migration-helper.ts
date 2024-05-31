@@ -6,9 +6,12 @@ const { knexInstance } = knexModule;
 
 export async function runMigrations() {
     try {
-        console.log('try migration')
+        logger.app.info('running migrations...');
+
         await knexInstance.migrate.latest();
-    } catch(err) {
+
+        logger.app.info('migrations completed successfully!');
+    } catch (err) {
         logger.app.fatal(`Error running migrations: ${err}`);
 
         await knexInstance.migrate.rollback();

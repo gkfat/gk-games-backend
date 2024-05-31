@@ -5,7 +5,7 @@ module.exports = {
     },
     db: {
         knex: {
-            client: 'mysql2',
+            client: "mysql2",
             debug: false,
             connection: {
                 host: process.env.MYSQL_HOST,
@@ -14,18 +14,34 @@ module.exports = {
                 password: process.env.MYSQL_PASSWORD,
                 database: process.env.MYSQL_DATABASE,
             },
-            migrations: {
-                directory: 'setup/knex/migrations',
-                tableName: '__migrations__',
-            },
             pool: {
                 max: 5,
                 min: 0,
+            },
+            migrations: {
+                extension: "mjs",
+                loadExtensions: [".mjs"],
+                directory: "setup/knex/migrations",
+                tableName: "__migrations__",
+                stub: "setup/knex/migration.stub",
+            },
+            seeds: {
+                extension: "mjs",
+                loadExtensions: [".mjs"],
+                directory: "setup/knex/seeds",
+                stub: "setup/knex/seed.stub",
             },
         },
         redis: {
             host: process.env.REDIS_HOST,
             port: parseInt(process.env.REDIS_PORT, 10) || 6379,
         },
+    },
+    jwt: {
+        secret: process.env.JWT_SECRET,
+        expiresIn: process.env.JWT_EXPIRES_IN,
+    },
+    googleAuth: {
+        clientId: process.env.GOOGLE_AUTH_CLIENT_ID,
     },
 };

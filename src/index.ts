@@ -5,10 +5,7 @@ import util from 'node:util';
 
 import config from 'config';
 
-import {
-  boot,
-  shutdown,
-} from './boot';
+import { boot, shutdown } from './boot';
 import { logger } from './util/logger';
 import { runMigrations } from './util/migration-helper';
 
@@ -17,14 +14,18 @@ let server: Server;
 async function handleUncaughtExceptionOrRejection(error: any, promise: any) {
     if (promise) {
         console.error('uncaughtRejection, ', error);
-        logger.app.fatal(`Unhandled Rejection at: error: ${error}, promise: ${promise}`);
+        logger.app.fatal(
+            `Unhandled Rejection at: error: ${error}, promise: ${promise}`,
+        );
     } else {
         console.error('uncaughtException, ', error);
         logger.app.fatal(`Unhandled Exception at: error: ${error}`);
     }
 
     if (server) {
-        await util.promisify(server.close)().catch(() => {});
+        await util
+            .promisify(server.close)()
+            .catch(() => {});
     }
 
     shutdown();
@@ -58,8 +59,11 @@ async function startServer() {
             port: config.app.port,
         });
 
+        app.log.info(
+            `API Document available on http://localhost:${config.app.port}/documentation`,
+        );
         app.log.info(`Server started successfully.`);
-    } catch(err) {
+    } catch (err) {
         app.log.error(err);
         shutdown();
     }

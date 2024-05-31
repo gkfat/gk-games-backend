@@ -13,7 +13,7 @@ const Pino: FastifyBaseLogger = pino(
     {
         level: 'info',
     },
-    stream,
+    stream
 );
 
 export const logger = {
